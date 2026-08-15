@@ -4,6 +4,8 @@
 
 严重级别：P1（应用可启动，但选择工作区主流程被阻断）
 
+风险归类：DSH/桌面基础设施风险；不依赖已废弃的科研绘图产品逻辑。
+
 记录日期：2026-08-15
 
 ## 现象
@@ -18,7 +20,7 @@ directory picker failed: directory picker failed: win32 folder dialog worker exi
 
 ## 已确认基线
 
-- 当前唯一可写仓库 `D:\deepseek-agent\dsh-research-cat-platform` 的基线为 `0ed310168a42ed511939c800ef10658b042d7c30`，仓库内尚无实现代码。
+- 当前唯一可写仓库 `D:\deepseek-agent\dsh-research-cat-platform` 的产品执行基线为 `9a5edf5`，仓库内尚无实现代码。
 - 发生问题的只读参考实现为 `D:\deepseek-agent\dsh-catnap-desktop`，检查时 commit 为 `862bf62`。
 - 参考实现内置 `@deepseek-ai/dsh` 与 `@deepseek-ai/dsh-host-directory-picker-native` `0.1.0-rc.6`。
 
