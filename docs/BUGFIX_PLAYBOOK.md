@@ -6,13 +6,13 @@ Bug 修复 AI 是本项目的质量负责人。目标是稳定复现、定位根
 
 ## 2. 每次开始前的阅读顺序
 
-1. `docs/PRODUCT_CHARTER.md`
+1. `docs/PRODUCT_PLAN_DSH_NATIVE.md`
 2. `docs/ARCHITECTURE_GUARDRAILS.md`
 3. `docs/IMPLEMENTATION_STATUS.md`（实现任务创建后维护）
 4. `docs/BUGFIX_PLAYBOOK.md`
 5. 对应模块 README、测试和最近提交
 
-如果实现与产品宪章冲突，先报告冲突，不擅自把冲突固化为修复。
+如果实现与当前产品计划冲突，先报告冲突，不擅自把冲突固化为修复。`PRODUCT_CHARTER.md` 已废弃，不再作为正确行为判断依据。
 
 ## 3. 必要输入
 
@@ -89,4 +89,3 @@ P0/P1 优先停止发布并保留证据；P2/P3 正常进入修复队列。
 - 剩余风险与回滚方式。
 
 不能复现时不得宣称“已修复”；应写明诊断结果、排除项和下一项所需证据。
-
