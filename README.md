@@ -11,7 +11,7 @@
 将本仓库安装到 DSH 的 `web` profile：
 
 ```powershell
-dsh plugin --profile web add github:luoyan96/dsh-research-plugins
+dsh plugin --profile web add dsh-research-plugins@latest
 ```
 
 安装后启动或重启 DSH：
@@ -30,6 +30,12 @@ dsh web
 ```
 
 `dsh plugin` 会读取包内的 `cordis.patch.yml`，自动把 `research-core` 加入该 profile；不需要手工复制配置文件。
+
+尚未发布 npm 版本时，可临时使用 GitHub 安装：
+
+```powershell
+dsh plugin --profile web add github:luoyan96/dsh-research-plugins
+```
 
 ## 验证安装
 
@@ -81,3 +87,7 @@ pnpm pack --dry-run
 4. 兼容性、迁移与发布稳定化。
 
 依赖 DSH 的代码必须保留在插件入口与适配边界，禁止修改上游 Harness 源码。
+
+## 发布维护者说明
+
+为发布 `dsh-research-plugins@latest`，推送形如 `v0.1.0` 的版本 tag。GitHub Actions 会执行校验并通过 npm trusted publishing 发布带 provenance 的公开包。首次发布前，请在 npm 包设置中将本仓库的 `publish.yml` workflow 配置为 trusted publisher。
