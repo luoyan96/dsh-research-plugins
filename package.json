@@ -1,0 +1,46 @@
+{
+  "name": "@researchos/dsh-research-core",
+  "version": "0.1.0",
+  "description": "Auditable local project and artifact tools for DeepSeek Harness research skills.",
+  "type": "module",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "main": "lib/index.mjs",
+  "types": "lib/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.mts",
+      "default": "./lib/index.mjs"
+    },
+    "./domain": {
+      "types": "./lib/domain/index.d.mts",
+      "default": "./lib/domain/index.mjs"
+    }
+  },
+  "files": ["lib", "cordis.patch.yml", "profiles"],
+  "keywords": ["deepseek-harness", "dsh", "research", "artifact", "provenance"],
+  "license": "MIT",
+  "engines": { "node": "^22.19.0 || >=24" },
+  "packageManager": "pnpm@11.7.0",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.1",
+    "@deepseek-ai/dsh-tools": "^0.1.0-rc.5"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "link:../deepseek-harness/vendor/cordis",
+    "@deepseek-ai/dsh-tools": "link:../deepseek-harness/packages/core/tools",
+    "@types/node": "^22.20.0",
+    "tsdown": "^0.22.2",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.8"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "ci": "pnpm typecheck && pnpm test && pnpm build"
+  }
+}

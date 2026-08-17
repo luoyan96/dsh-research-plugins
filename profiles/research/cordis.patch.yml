@@ -1,0 +1,5 @@
+- insert:
+    - id: research-core
+      name: '@researchos/dsh-research-core'
+      config:
+        workspaceRoot: !!js process.env.DSH_RESEARCH_WORKSPACE ?? process.cwd()
