@@ -39,7 +39,7 @@ dsh plugin --profile web add github:luoyan96/dsh-research-plugins
 
 ## 验证安装
 
-打开一个工作区后的新会话，输入框上方会出现「科研快速开始」。点击任一按钮会把可编辑的 Skill 调用模板放入输入框，例如「找论文」会填入 `/paper-search-pro …`。补全研究问题后发送即可；按钮不会自动下载、检索或执行实验。
+新对话的输入框正下方会出现「科研插件」入口。点击后会展开六个科研工作流的用途说明；每张卡片的「去使用」只会把可编辑的 Skill 调用模板放入原输入框，例如「论文检索」会填入 `/paper-search-pro …`。补全研究问题后发送即可；按钮不会自动下载、检索或执行实验。
 
 也可以直接在 DSH 对话中输入任意 Skill 调用：
 
@@ -107,4 +107,4 @@ pnpm pack --dry-run
 
 ## 发布维护者说明
 
-为发布 `dsh-research-plugins@latest`，推送形如 `v0.2.0` 的版本 tag。GitHub Actions 会校验可发布 tarball，并通过 npm trusted publishing 发布带 provenance 的公开包。构建产物随仓库提交，因此发布工作流不依赖尚未公开发布的 DSH 内部开发包。首次发布前，请在 npm 包设置中将本仓库的 `publish.yml` workflow 配置为 trusted publisher。
+为发布 `dsh-research-plugins@latest`，推送形如 `v0.2.1` 的版本 tag。GitHub Actions 会校验可发布 tarball，并通过 npm trusted publishing 发布带 provenance 的公开包。构建产物随仓库提交，因此发布工作流不依赖尚未公开发布的 DSH 内部开发包。首次发布前，请在 npm 包设置中将本仓库的 `publish.yml` workflow 配置为 trusted publisher。

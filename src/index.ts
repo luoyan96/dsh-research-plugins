@@ -6,7 +6,7 @@ import { RESEARCH_SKILLS } from './research-skills.js'
 
 export const name = 'research-core'
 export const inject = ['tools', 'skills']
-export const VERSION = '0.2.0'
+export const VERSION = '0.2.1'
 
 export interface Config { workspaceRoot?: string }
 

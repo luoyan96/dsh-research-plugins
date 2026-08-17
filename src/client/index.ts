@@ -1,13 +1,13 @@
 import type { ClientContext } from '@deepseek-ai/dsh-client-runtime/client'
-import type {} from '@deepseek-ai/dsh-client-ui-conversation/client'
-import { ResearchQuickStartDock } from './ResearchQuickStartDock.js'
+import { mountResearchLauncher } from './research-launcher.js'
 
-export const inject = ['slots']
+/**
+ * The new-session composer has no additive root slot in DSH yet. Mount against
+ * its stable `data-composer-seat` host so the launcher survives the blank /
+ * active session transition without replacing DSH's workspace or model UI.
+ */
+export const inject: readonly string[] = []
 
 export function apply(ctx: ClientContext): void {
-  ctx.slots.inject('conversation.input.dock', () => ctx.slots.register({
-    name: 'conversation.input.dock',
-    id: 'research-quick-start',
-    order: -20,
-  }, ResearchQuickStartDock))
+  ctx.effect(() => mountResearchLauncher(), 'dsh-research-plugins: new-session launcher')
 }

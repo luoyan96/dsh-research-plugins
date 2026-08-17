@@ -2,7 +2,7 @@ import { Context } from "@deepseek-ai/cordis";
 //#region src/index.d.ts
 declare const name = "research-core";
 declare const inject: string[];
-declare const VERSION = "0.2.0";
+declare const VERSION = "0.2.1";
 interface Config {
   workspaceRoot?: string;
 }
