@@ -2,10 +2,11 @@ import type { Context } from '@deepseek-ai/cordis'
 import { defineTool, type ValueSchemaSpec } from '@deepseek-ai/dsh-tools'
 import { ArtifactStore } from './artifact-store.js'
 import { RESEARCH_SCHEMA_VERSION } from './domain/index.js'
+import { RESEARCH_SKILLS } from './research-skills.js'
 
 export const name = 'research-core'
-export const inject = ['tools']
-export const VERSION = '0.1.0'
+export const inject = ['tools', 'skills']
+export const VERSION = '0.2.0'
 
 export interface Config { workspaceRoot?: string }
 
@@ -21,6 +22,7 @@ const artifactOutput = {
 
 export function apply(ctx: Context, config: Config = {}): void {
   const store = new ArtifactStore(config.workspaceRoot ?? process.cwd())
+  for (const skill of RESEARCH_SKILLS) ctx.skills.register(skill)
   ctx.tools.register(defineTool({
     name: 'research_health', description: 'Report the installed research plugin version and available local services. Does not access the network or filesystem.', parameters: {},
     output: { schema: { type: 'object', additionalProperties: false, properties: { plugin_version: { type: 'string', required: true }, schema_version: { type: 'integer', required: true }, services: { type: 'array', required: true, items: { type: 'string' } } } }, render: (_args, value) => [{ type: 'text', text: `research-core ${value.plugin_version}; services: ${value.services.join(', ')}` }] },

@@ -1,6 +1,6 @@
 # DSH Research Core
 
-面向 DeepSeek Harness（DSH）的本地科研基础插件。它为科研 Skills 提供可审计的项目与 Artifact 存储；科研 SOP 仍由 Skills 定义，本插件不生成或伪造文献、引用和实验结果。
+面向 DeepSeek Harness（DSH）的本地科研基础插件。它提供可审计的项目与 Artifact 存储，并内置六个科研 Skills 与会话内「科研快速开始」入口；插件不会生成或伪造文献、引用和实验结果。
 
 > 当前可用版本是阶段 0–1：只包含本地 Project / Artifact 能力。不包含论文搜索、PDF 解析、引用验证或实验执行。
 
@@ -39,13 +39,30 @@ dsh plugin --profile web add github:luoyan96/dsh-research-plugins
 
 ## 验证安装
 
-在 DSH 对话中请求：
+打开一个工作区后的新会话，输入框上方会出现「科研快速开始」。点击任一按钮会把可编辑的 Skill 调用模板放入输入框，例如「找论文」会填入 `/paper-search-pro …`。补全研究问题后发送即可；按钮不会自动下载、检索或执行实验。
+
+也可以直接在 DSH 对话中输入任意 Skill 调用：
+
+```text
+/paper-search-pro：找 2022–2026 年小语言模型校准相关论文，中英文都要。
+```
+
+或请求基础工具验证：
 
 ```text
 调用 research_health，检查科研插件是否可用。
 ```
 
-成功结果会包含 `plugin_version`、`schema_version`，以及 `projects`、`artifacts` 两项服务。
+成功结果会包含 `plugin_version`、`schema_version`，以及 `projects`、`artifacts` 两项服务。插件还会把下列 Skills 登记进 DSH 的 Skill catalog，模型可以按需加载它们：
+
+| Skill | 用于 |
+|---|---|
+| `paper-search-pro` | 文献检索与排序简报 |
+| `systematic-literature-review` | 系统/范围综述 |
+| `academic-paper-review` | 论文精读与审稿 |
+| `hypothesis-research-loop` | 假设、最小实验与研究日志 |
+| `statistical-result-analysis` | 统计分析与可复现报告 |
+| `research-writing-and-rebuttal` | 学术写作、修稿与 rebuttal |
 
 ## 当前工具
 
@@ -65,7 +82,7 @@ dsh web
 
 ## 与科研 Skills 配合
 
-本插件与 [dsh-research-skills](https://github.com/luoyan96/dsh-research-skills) 分工：Skills 负责综述、阅读、研究空白、复现和写作流程；本插件负责确定性的本地数据与工具能力。现阶段 Skills 可以使用项目和 Artifact 工具保存可追溯的中间产物。
+这些内置 Skill 内容来自并持续对应 [dsh-research-skills](https://github.com/luoyan96/dsh-research-skills)。该仓库仍是工作流的完整源代码与治理材料；本包把可执行入口随插件一起交付，避免用户另行复制 Skills 目录。
 
 ## 开发与验证
 
@@ -90,4 +107,4 @@ pnpm pack --dry-run
 
 ## 发布维护者说明
 
-为发布 `dsh-research-plugins@latest`，推送形如 `v0.1.0` 的版本 tag。GitHub Actions 会执行校验并通过 npm trusted publishing 发布带 provenance 的公开包。首次发布前，请在 npm 包设置中将本仓库的 `publish.yml` workflow 配置为 trusted publisher。
+为发布 `dsh-research-plugins@latest`，推送形如 `v0.2.0` 的版本 tag。GitHub Actions 会校验可发布 tarball，并通过 npm trusted publishing 发布带 provenance 的公开包。构建产物随仓库提交，因此发布工作流不依赖尚未公开发布的 DSH 内部开发包。首次发布前，请在 npm 包设置中将本仓库的 `publish.yml` workflow 配置为 trusted publisher。

@@ -12,8 +12,16 @@ describe('research-core plugin', () => {
     const root = await mkdtemp(join(tmpdir(), 'dsh-research-plugin-'))
     roots.push(root)
     const definitions: Array<{ name: string, execute: (args: never) => Promise<unknown> }> = []
-    apply({ tools: { register: (definition: never) => { definitions.push(definition as never); return () => undefined } } } as never, { workspaceRoot: root })
+    const skills: Array<{ name: string }> = []
+    apply({
+      tools: { register: (definition: never) => { definitions.push(definition as never); return () => undefined } },
+      skills: { register: (skill: { name: string }) => { skills.push(skill); return () => undefined } },
+    } as never, { workspaceRoot: root })
     expect(definitions.map(item => item.name)).toEqual(['research_health', 'project_create', 'project_get', 'artifact_save', 'artifact_list', 'artifact_get'])
+    expect(skills.map(skill => skill.name)).toEqual([
+      'paper-search-pro', 'systematic-literature-review', 'academic-paper-review',
+      'hypothesis-research-loop', 'statistical-result-analysis', 'research-writing-and-rebuttal',
+    ])
     await expect(definitions[0]!.execute({} as never)).resolves.toMatchObject({ services: ['projects', 'artifacts'] })
   })
 })
